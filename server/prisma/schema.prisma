@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model messages {
+  idMessage        Int       @id @default(autoincrement())
+  message          String
+  messageUserId    Int
+  messageCreatedAt DateTime
+  user             user      @relation(fields: [messageUserId], references: [id])
+  replies          Replies[]
+
+  @@index([messageUserId])
+}
+
+model Replies {
+  idReply        Int      @id @default(autoincrement())
+  reply          String
+  messagesId     Int
+  replyUserId    Int
+  replyCreatedAt DateTime
+  messages       messages @relation(fields: [messagesId], references: [idMessage])
+  user           user     @relation(fields: [replyUserId], references: [id])
+
+  @@index([messagesId])
+  @@index([replyUserId])
+}
+
+model conseil {
+  idConseil Int    @id @default(autoincrement())
+  conseil   String
+}
+
+model rdv {
+  idRdv            Int      @id @default(autoincrement())
+  raisonVisite     String
+  dateVisite       DateTime
+  typeConsultation String
+  rdvUserId        Int
+  heureVisite      String?
+
+  @@index([rdvUserId])
+}
+
+model reclamation {
+  idReclamation     Int    @id @default(autoincrement())
+  reclamation       String
+  concerne          String
+  reclamationUserId Int
+  user              user   @relation(fields: [reclamationUserId], references: [id])
+
+  @@index([reclamationUserId])
+}
+
+model user {
+  id          Int           @id @default(autoincrement())
+  nom         String        @db.VarChar(255)
+  prenom      String        @db.VarChar(255)
+  cite        Int?
+  chambre     Int?
+  mail        String        @unique
+  matricule   Int?          @unique
+  password    String        @db.VarChar(255)
+  role        Role          @default(ETUDIANT)
+  replies     Replies[]
+  messages    messages[]
+  reclamation reclamation[]
+  commande    commande[]
+}
+
+model medicament {
+  idMedicament Int        @id @default(autoincrement())
+  nom          String     @unique
+  description  String
+  commande     commande[]
+}
+
+model commande {
+  numCommande    Int        @id @default(autoincrement())
+  medicamentId   Int
+  commandeUserId Int
+  user           user       @relation(fields: [commandeUserId], references: [id])
+  medicament     medicament @relation(fields: [medicamentId], references: [idMedicament])
+
+  @@index([commandeUserId])
+  @@index([medicamentId])
+}
+
+enum Role {
+  ETUDIANT
+  MEDECIN
+  BUREAU
+  SCOLARITE
+}
