@@ -3,6 +3,7 @@ import axios from "axios";
 import NavbarEtudiant from "./NavbarEtudiant";
 import { AuthContexts } from "../helpers/AuthContexts";
 import { useContext } from "react";
+import Footer from "../basicComponent/Footer";
 function ConseilsEtudiant() {
   const [listeConseils, setListeConseils] = useState([]);
 
@@ -30,19 +31,19 @@ function ConseilsEtudiant() {
   return (
     <>
       <NavbarEtudiant />
-      <div className="">
+      <div className="h-[900px]">
         <div className="px-36">
-          <h1 className="text-center text-xl font-semibold pt-20 pb-10">
+          <h1 className="text-center text-xl font-bold pt-[150px] pb-10">
             Liste des Conseils
           </h1>
         </div>
-        <div className="flex flex-col justify-center items-center gap-10 p-11 bg-contain w-screen h-screen bg-center bg-no-repeat bg-[url('/assets/conseils/image_conseils.png')]">
-          <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
+        <div className="flex flex-col justify-center items-center gap-10 p-11 bg-contain w-screen h-[500px] bg-center bg-no-repeat bg-[url('/assets/conseils/image_conseils.png')]">
+          <div className="overflow-y-auto w-[1200px]">
             <ul className="flex flex-wrap justify-center">
               {listeConseils.map((conseil) => (
                 <li
                   key={conseil.idConseil}
-                  className="rounded-xl py-6 px-4 text-[14px] font-semibold h-36 w-[300px] shadow bg-white mx-4 my-4"
+                  className="rounded-xl py-6 px-3 text-[14px] font-semibold h-[100px] w-[300px] shadow-[0px_-1px_19px_rgba(0,0,0,0.30)] bg-white mx-4 my-4"
                 >
                   {conseil.conseil}
                 </li>
@@ -51,6 +52,7 @@ function ConseilsEtudiant() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

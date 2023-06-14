@@ -34,5 +34,19 @@ router.post("/",validateToken, async (req, res) => {
   await prisma.replies.create({ data: message });
   res.json(message);
 });
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedItem = await prisma.replies.delete({
+      where: { idReply: Number(id) },
+    });
+
+    res.json({ message: "Item deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to delete item" });
+  }
+});
 
 module.exports = router;

@@ -3,11 +3,8 @@ import axios from "axios";
 import NavbarBureau from "./NavbarBureau";
 import Footer from "../basicComponent/Footer";
 
-import { AuthContexts } from "../helpers/AuthContexts";
-
 function MedicamentsBureau() {
   const [medicament, setMedicament] = useState([]);
-  const { authState } = useContext(AuthContexts);
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupTwo, setShowPopupTwo] = useState(false);
 
@@ -33,14 +30,6 @@ function MedicamentsBureau() {
     }
     fetchMedicament();
   }, [render]);
-
-  if (!authState.status) {
-    return (
-      <>
-        <div>User not logged in</div>
-      </>
-    );
-  }
 
   const handleDelete = async (idMedicament) => {
     await axios

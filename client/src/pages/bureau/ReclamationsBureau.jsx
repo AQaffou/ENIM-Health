@@ -1,7 +1,7 @@
 import NavbarBureau from "./NavbarBureau";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { AuthContexts } from "../helpers/AuthContexts";
+import Footer from "../basicComponent/Footer";
 
 function ReclamationsBureau() {
   const [reclamations, setReclamations] = useState([]);
@@ -32,15 +32,6 @@ function ReclamationsBureau() {
       .delete(`http://localhost:3001/reclamation/${idReclamation}`)
       .then(setRender(render + 1));
   };
-
-  const { authState } = useContext(AuthContexts);
-  if (!authState.status) {
-    return (
-      <>
-        <div>User not logged in</div>
-      </>
-    );
-  }
 
   return (
     <>
@@ -84,6 +75,7 @@ function ReclamationsBureau() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

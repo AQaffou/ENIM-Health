@@ -3,6 +3,7 @@ import axios from "axios";
 import Menu from "./landingComponents/Menu";
 import { useNavigate } from "react-router-dom";
 import { AuthContexts } from "./helpers/AuthContexts";
+import Footer from "./basicComponent/Footer";
 
 const Auth = () => {
   const [nom, setNom] = useState("");
@@ -35,16 +36,20 @@ const Auth = () => {
           alert(response.data.error);
         } else {
           console.log(response);
-          // setNom("");
-          // setPrenom("");
-          // setCite(null);
-          // setChambre(null);
-          // setMail("");
-          // setMatricule(null);
-          // setPassword("");
+          alert(
+            "Vous avez créer votre compte avec succès, veuillez vous connecter!"
+          );
+          setNom("");
+          setPrenom("");
+          setCite(null);
+          setChambre(null);
+          setMail("");
+          setMatricule(null);
+          setPassword("");
         }
       });
   };
+
   const handleLogin = async () => {
     await axios
       .post("http://localhost:3001/user/login", {
@@ -82,94 +87,98 @@ const Auth = () => {
 
   return (
     <>
-      <div className="mb-36">
+      <div className="mb-24">
         <Menu />
       </div>
-      <div className="flex justify-center gap-36">
-        <div className="flex flex-col w-96 h-96 justify-between font-[mulish]">
-          <input
-            className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl"
-            placeholder="Nom"
-            type="text"
-            value={nom}
-            onChange={(e) => setNom(e.target.value)}
-          />
-          <input
-            className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl"
-            placeholder="Prenom"
-            type="text"
-            value={prenom}
-            onChange={(e) => setPrenom(e.target.value)}
-          />
-          <input
-            className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl"
-            placeholder="Cité de résidence"
-            type="number"
-            min="1"
-            max="3"
-            value={cite}
-            onChange={(e) => setCite(Number(e.target.value))}
-          />
-          <input
-            className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl"
-            placeholder="Numéro de chambre"
-            type="number"
-            
-            value={chambre}
-            onChange={(e) => setChambre(Number(e.target.value))}
-          />
-          <input
-            className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl"
-            placeholder="Mail institutionnel"
-            type="email"
-            value={mail}
-            onChange={(e) => setMail(e.target.value)}
-          />
-          <input
-            className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl"
-            placeholder="Matricule"
-            type="number"
-            value={matricule}
-            onChange={(e) => setMatricule(Number(e.target.value))}
-          />
-          <input
-            className="bg-[#EAF0F7] h-[50px] focus:outline-0  pl-2 rounded-xl"
-            placeholder="Mot passe"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
+      <div className="flex items-start justify-center gap-[300px] pt-[100px]  bg-[url('/assets/landing_page/element.png')] bg-no-repeat mb-[30px]">
+        <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-wrap w-[600px] h-96 justify-around items-center font-[mulish]">
+            <input
+              className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl w-[270px]"
+              placeholder="Nom"
+              type="text"
+              value={nom}
+              onChange={(e) => setNom(e.target.value)}
+            />
+            <input
+              className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl w-[270px]"
+              placeholder="Prenom"
+              type="text"
+              value={prenom}
+              onChange={(e) => setPrenom(e.target.value)}
+            />
+            <input
+              className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl w-[270px]"
+              placeholder="Cité de résidence"
+              type="number"
+              min="1"
+              max="3"
+              value={cite}
+              onChange={(e) => setCite(Number(e.target.value))}
+            />
+            <input
+              className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl w-[270px]"
+              placeholder="Numéro de chambre"
+              type="number"
+              value={chambre}
+              onChange={(e) => setChambre(Number(e.target.value))}
+            />
+            <input
+              className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl w-[270px]"
+              placeholder="Mail institutionnel"
+              type="email"
+              value={mail}
+              onChange={(e) => setMail(e.target.value)}
+            />
+            <input
+              className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl w-[270px]"
+              placeholder="Matricule"
+              type="number"
+              value={matricule}
+              onChange={(e) => setMatricule(Number(e.target.value))}
+            />
+            <input
+              className="bg-[#EAF0F7] h-[50px] focus:outline-0  pl-2 rounded-xl w-[270px]"
+              placeholder="Mot passe"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
           <button
-            className="bg-blue-button text-white font-semibold px-10 py-4 rounded-2xl mt-12 border-2 border-white hover:bg-white hover:text-blue-button hover:border-2 hover:border-blue-button transition-all delay-1"
+            className="bg-blue-button text-white font-semibold px-10 py-3 rounded-full w-[200px] mt-12 border-2 border-white hover:bg-white hover:text-blue-button hover:border-2 hover:border-blue-button transition-all delay-1"
             onClick={handleRegister}
           >
             S'inscrire
           </button>
         </div>
-        <div className="flex flex-col w-96 h-96 justify-between font-[mulish]">
-          <input
-            className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl"
-            placeholder="Enter Email"
-            type="email"
-            value={mailLogin}
-            onChange={(e) => setMailLogin(e.target.value)}
-          />
-          <input
-            className="bg-[#EAF0F7] h-[50px] focus:outline-0  pl-2 rounded-xl"
-            placeholder="Mot de passe"
-            type="password"
-            value={passwordLogin}
-            onChange={(e) => setPasswordLogin(e.target.value)}
-          />
-          <button
-            className="bg-blue-button text-white font-semibold px-10 py-4 rounded-2xl mt-12 border-2 border-white hover:bg-white hover:text-blue-button hover:border-2 hover:border-blue-button transition-all delay-1"
-            onClick={handleLogin}
-          >
-            Se connecter
-          </button>
+        <div className="flex flex-col">
+          <div className="flex flex-col w-[350px] h-[230px] justify-between items-center font-[mulish] mb-[100px]">
+            <input
+              className="bg-[#EAF0F7] h-[50px] focus:outline-0 pl-2 rounded-xl  w-[300px]"
+              placeholder="Enter Email"
+              type="email"
+              value={mailLogin}
+              onChange={(e) => setMailLogin(e.target.value)}
+            />
+            <input
+              className="bg-[#EAF0F7] h-[50px] focus:outline-0  pl-2 rounded-xl w-[300px]"
+              placeholder="Mot de passe"
+              type="password"
+              value={passwordLogin}
+              onChange={(e) => setPasswordLogin(e.target.value)}
+            />
+            <button
+              className="bg-blue-button text-white font-semibold px-10 py-3 w-[220px] rounded-full  border-2 border-white hover:bg-white hover:text-blue-button hover:border-2 hover:border-blue-button transition-all delay-1"
+              onClick={handleLogin}
+            >
+              Se connecter
+            </button>
+          </div>
+          <div className="h-[400px] bg-[url('/assets/Frame4.svg')] bg-no-repeat"></div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

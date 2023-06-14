@@ -15,14 +15,10 @@ router.get('/',validateToken, async (req, res) => {
 
 router.post('/',validateToken, async (req, res) => {
   const reclamation = req.body;
-
-  
   await prisma.reclamation.create({
       data: reclamation
     });
-
     res.json(reclamation);
- 
 });
 
 router.delete('/:id', async(req,res)=>{

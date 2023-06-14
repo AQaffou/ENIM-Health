@@ -3,6 +3,7 @@ import ReactTimeAgo from "react-time-ago";
 import axios from "axios";
 import { AuthContexts } from "../helpers/AuthContexts";
 import NavbarEtudiant from "./NavbarEtudiant";
+import Footer from "../basicComponent/Footer";
 
 function ForumEtudiant() {
   const [listeMessages, setListeMessages] = useState([]);
@@ -110,16 +111,16 @@ function ForumEtudiant() {
   return (
     <>
       <NavbarEtudiant />
-      <div className="contain flex flex-row ml-56 pr-24 space-x-5 h-screen">
+      <div className="flex flex-row ml-56 pr-24 h-screen pt-[150px] mb-[100px]">
         <div className="form flex flex-col space-y-4 w-2/4">
           <div
-            className="messages border-2 border-transparent border-b-stone-200 flex flex-col overflow-y-auto pb-10  p-2 resize-none space-y-5 h-full"
+            className=" border-2 rounded-xl border-[#EAF0F7] flex flex-col overflow-y-auto pb-10  p-2 resize-none space-y-5 h-full"
             id="nv_message"
           >
             {listeMessages.map(
               ({ idMessage, message, messageCreatedAt, user }) => (
                 <div key={idMessage} className="space-y-2">
-                  <div className="shadow-md rounded-md pr-2 pt-3">
+                  <div className="border-2 rounded-xl border-[#EAF0F7] bg-[#EAF0F7] p-3">
                     <div className="identifiants ml-5">
                       <div className="name">
                         {user.nom} {user.prenom}
@@ -134,7 +135,7 @@ function ForumEtudiant() {
                     <div className="nv_message font-bold  ml-5 font-['Roboto'] text-lg">
                       {message}
                     </div>
-                    <div className="Comment grid grid-cols-5 rounded-full shadow-md m-2 h-10">
+                    <div className="Comment grid grid-cols-5 rounded-full m-2 h-10 bg-white">
                       <textarea
                         onChange={(e) => handleReply(e, idMessage)}
                         value={
@@ -143,10 +144,10 @@ function ForumEtudiant() {
                             : ""
                         }
                         placeholder="Ecrire votre commentaire ..."
-                        className="col-span-4 bg-transparent border-none rounded-full resize-none hover:border-none p-2"
+                        className="col-span-4 bg-transparent border-none rounded-full resize-none hover:border-none outline-0 p-2"
                       ></textarea>
                       <button
-                        className="flex flex-row space-x-1 self-end rounded-full bg-blue-500 p-2"
+                        className="flex flex-row space-x-1 self-end rounded-full  bg-white p-2"
                         onClick={() =>
                           handleClickReply(
                             inputListeReplies[idMessage],
@@ -159,7 +160,7 @@ function ForumEtudiant() {
                           alt="Répondre"
                           className="mt-1"
                         />
-                        <p className="font-['Roboto'] text-white font-thin">
+                        <p className="font-['Roboto'] text-blue-400 font-thin">
                           Répondre
                         </p>
                       </button>
@@ -174,9 +175,7 @@ function ForumEtudiant() {
                               key={idReply}
                               className="px-4 py-3 space-y-1 border rounded-md"
                             >
-                              <div className="border-2 border-b-stone-200 p">
-                                {reply}
-                              </div>
+                              <div className=" p font-bold">{reply}</div>
                               <div className="text-gray-400 font-['Roboto']">
                                 by @ {user.nom} {user.prenom}
                               </div>
@@ -201,7 +200,7 @@ function ForumEtudiant() {
               Nouveau Message
             </p>
             <textarea
-              className="message bg-transparent border border-gray-400 rounded resize-none"
+              className="message bg-transparent border border-gray-400 rounded resize-none w-[690px] outline-0"
               name="message"
               id="message"
               cols="80"
@@ -233,6 +232,7 @@ function ForumEtudiant() {
           />
         </div>
       </div>
+      <Footer />
     </>
   );
 }

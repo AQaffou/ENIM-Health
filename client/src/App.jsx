@@ -13,7 +13,7 @@ import MedicamentsEtudiant from "./pages/etudiant/MedicamentsEtudiant";
 import DashboardMedecin from "./pages/medecin/DashboardMedecin";
 import ConseilsMedecin from "./pages/medecin/Conseilsmedecin";
 import RendezvousMedecin from "./pages/medecin/Rendezvousmedecin";
-import ReclamationsMedecin from "./pages/medecin/Reclamationsmedecin";
+import ReclamationsMedecin from "./pages/medecin/ReclamationsMedecin";
 import ForumMedecin from "./pages/medecin/Forummedecin";
 import MedicamentsMedecin from "./pages/medecin/Medicamentsmedecin";
 

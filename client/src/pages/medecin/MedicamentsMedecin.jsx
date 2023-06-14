@@ -27,14 +27,6 @@ function MedicamentsMedecin() {
     fetchMedicament();
   }, []);
 
-  if (!authState.status) {
-    return (
-      <>
-        <div>User not logged in</div>
-      </>
-    );
-  }
-
   const handleSearch = (event) => {
     const value = event.target.value;
     setSearchValue(value);
